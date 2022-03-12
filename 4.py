@@ -1,31 +1,41 @@
 from enum import Enum
-
-
+class zoo:
+      cuidadores=[]
+      animales=[]
+      stock=stock
+class vacaciones:
+      def __init__(self,inicio,duracion,empleado):
+            self.vacacionero=empleado
+            self.inicio=inicio
+            self.duracion=duracion
 class cuidadores:       
-    def __init__(self,nombre,apellido,animales):
+    def __init__(self,nombre,apellido,animales,inicio,duracion):
         self.nombre=nombre
         self.apellido=apellido
         self.animales=animales
-
-class comida:
-      pass
-class carnivoro(comida):
-      def __init__(self,tipo):
-        self.carnivoro=tipo
-class herbivoro(comida):
-       def __init__(self,tipo):
-            self.herbivoro=tipo
-class insectivoro(comida):
-       def __init__(self,tipo):
-            self.insectivoro=tipo      
-class animales:
-    def __init__(self,raza,tipo_comida,numero):
-        self.id= numero 
-        self.comida=comida(tipo_comida)
-        self.raza= raza
+        self.descanso=vacaciones(inicio,duracion)
 class stock:
-      pass
+      suministros={}
+class comida:
+      food=[]
+class carnivoro:
+      def __init__(self):
+        self.tipo="carnivoro"
+class herbivoro:
+       def __init__(self):
+            self.tipo="herbivoro"
+class insectivoro:
+       def __init__(self):
+            self.tipo="insectivoro" 
 class dieta(Enum):
-      carnivoro=carnivoro()
-      herviboro=herbivoro()
-      insectivoro=insectivoro()
+      carnivoro=carnivoro.tipo()
+      herviboro=herbivoro.tipo()
+      insectivoro=insectivoro.tipo()   
+class animales:
+    def __init__(self,especie,tipo_comida,numero,cuidador):
+        self.id= numero 
+        self.especie= especie
+        self.alimentacion=dieta[tipo_comida].name
+        self.encargado=cuidador
+
+      
