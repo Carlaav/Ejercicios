@@ -13,7 +13,7 @@ class cuidadores:
         self.nombre=nombre
         self.apellido=apellido
         self.animales=animales
-        self.descanso=vacaciones(inicio,duracion)
+        self.descanso=vacaciones(inicio,duracion,self)
 class stock:
       suministros={}
 class comida:
