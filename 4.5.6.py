@@ -1,67 +1,76 @@
 from enum import Enum
+import time
 class zoo:
-      cuidadores=[]
-      animales=[]
-      stock={}
-
-      @staticmethod
-      def asignar_cuidador(cuidador,animal):
-            cuidador = cuidadores.__init__(cuidador)
-            animal = animales.__init__(animal)
-            animal.encargado= cuidador
-
-      @staticmethod
-      def dar_vacaciones(solicitud):
-            if solicitud:
-                  cuidadores.descanso=solicitud
-            else:
-                  pass
-
+      def __init__(self, cuidadores, animales):
+            self.cuidadores = cuidadores
+            self.animales = animales
+            self.stock = stock()
+          
+      #Asigna a un cuidador un animal que cuidar
+      def cuidar(self, cuidador, animal):
+            cuidador.animales.append(animal)
+      
+      def cogerVacaciones(self, cuidador, inicio, duracion):
+            cuidador.solicitarVacaciones(inicio, duracion)
+      
 class vacaciones:
       def __init__(self,inicio,duracion,empleado):
             self.vacacionero=empleado
             self.inicio=inicio
             self.duracion=duracion
-class cuidadores:
-      def __init__(self,nombre,apellido,animales,inicio,duracion):
-            self.nombre=nombre
-            self.apellido=apellido
-            self.animales=animales
-            self.descanso=vacaciones(inicio,duracion,vacaciones.vacacionero)
-
-      @staticmethod
-      def solicitar_vacaciones(inicio,duracion,empleado):
-            solicitud = (inicio,duracion,empleado)
-            return solicitud
-
+            
+      def verVacaciones(self):
+            print("Vacaciones de", self.vacacionero, "va de", self.inicio, "hasta dentro de", self.duracion, "dias")
+class cuidadores:       
+      def __init__(self,nombre,apellido):
+        self.nombre=nombre
+        self.apellido=apellido
+        self.animales=[]
+        
+      def solicitarVacaciones(self, dia, duracion):
+            vacaciones(dia, duracion, self)
+              
+      def getAnimalesCuidados(self):
+            return self.animales
+        
 class stock:
+      
       suministros={}
-
-      def esta_vacio(self, suministros):
-            if suministros:
-                  pass
+      
+      def sacar(self, comida, cantidad):
+            if comida in self.suministros.keys():
+                  if self.suministros[comida] - cantidad > 0:
+                        self.suministros[comida] = self.suministros[comida] - cantidad
+                  else:
+                        print("No es posible sacar esa cantidad de comida")
             else:
-                  raise Exception("No hay stock")
+                  print("No queda de esa comida posible")
+
+
 class comida:
       food=[]
 class carnivoro:
       def __init__(self):
-            self.tipo="carnivoro"
+        self.tipo="carnivoro"
 class herbivoro:
-      def __init__(self):
+       def __init__(self):
             self.tipo="herbivoro"
 class insectivoro:
-      def __init__(self):
-            self.tipo="insectivoro"
+       def __init__(self):
+            self.tipo="insectivoro" 
 class dieta(Enum):
-      carnivoro=carnivoro.__init__(Enum)
-      herviboro=herbivoro.__init__(Enum)
-      insectivoro=insectivoro.__init__(Enum)
+      carn=carnivoro().tipo
+      herv=herbivoro().tipo
+      insec=insectivoro().tipo   
 class animales:
-      def __init__(self,especie,tipo_comida,numero,cuidador):
-            self.id= numero
-            self.especie= especie
-            self.alimentacion=dieta[tipo_comida].name
-            self.encargado=cuidador
+    def __init__(self,especie,tipo_comida,numero,cuidador):
+        self.id= numero 
+        self.especie= especie
+        self.alimentacion=dieta[tipo_comida].name
+        self.encargado=cuidador
+        
 
+lista_Cuidadores = [cuidadores("Pepe", "Rodriguez"), cuidadores("Carla", "Tzi")]
+lista_animales = [animales("Gato", dieta["carn"].name, 1, lista_Cuidadores[0])]
 
+miZoo = zoo(lista_Cuidadores, lista_animales)
